@@ -1,7 +1,10 @@
 
 import React from "react";
 import { useDispatch } from "react-redux";
-import{increment,decrement,setValue} from "../store/counterSlice";
+import{adicionarItem}from "../Redux/listaSlice";
+import{removerItem}from "../Redux/listaSlice";
+import{editarItem}from "../Redux/listaSlice";
+
 
 function Botoes() {
 
@@ -9,9 +12,9 @@ function Botoes() {
 
   return (
     <div style={styles.container2}>
-      <button style={styles.item2} onClick={()=>dispatch(decrement())}>Remover</button>
-      <button style={styles.item2} onClick={()=>dispatch(increment())} >Adição</button>
-      <button style={styles.item2} onClick={()=>dispatch(setValue())} >Edição</button> 
+      <button style={styles.item2} onClick={()=>dispatch(removerItem())}>Remover</button>
+      <button style={styles.item2} onClick={()=>dispatch(adicionarItem())} >Adição</button>
+      <button style={styles.item2} onClick={()=>dispatch(editarItem())} >Edição</button> 
     </div>
   );
 }
