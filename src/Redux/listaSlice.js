@@ -14,7 +14,7 @@ const listaSlice = createSlice({
       state.itens.push({id:nextId++, nome: "Novo Nome", email: "novo@email.com", contato: "9999-9999" });
     },
     removerItem:(state,action)=>{
-      state.itens=state.itens.filter((item)=>item.id !== action.payload);
+      state.itens.pop();
     },
     editarItem:(state,action)=>{
       const{id,nome,email,contato}=action.payload;
