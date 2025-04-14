@@ -10,8 +10,14 @@ const listaSlice = createSlice({
   name: "lista",
   initialState,
   reducers: {
-    adicionarItem: (state) => {
-      state.itens.push({id:nextId++, nome: "Novo Nome", email: "novo@email.com", contato: "9999-9999" });
+    adicionarItem: (state,action) => {
+      const{nome,email,contato}=action.payload;
+      state.itens.push({
+        id: nextId++,
+        nome,
+        email,
+        contato,
+      });
     },
     removerItem:(state,action)=>{
       state.itens.pop();

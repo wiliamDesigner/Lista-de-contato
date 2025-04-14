@@ -1,33 +1,32 @@
-
-
+import React from "react";
+import styled from "styled-components";
 
 function Titulo() {
   return (
-
-    <div style={styles.container}>
-      <h2 style={styles.item}>Nome</h2>
-      <h2 style={styles.item}>Email</h2>
-      <h2 style={styles.item}>Contato</h2>
-    </div>
-    
+    <Container>
+      <Item>Nome</Item>
+      <Item>Email</Item>
+      <Item>Contato</Item>
+    </Container>
   );
 }
 
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center",
-    padding: "15px 15px",
-    backgroundColor:"#A19999",
-    marginTop:"40px",
-    borderRadius:"4px",
-    width:"30%",
-    margin: "0 auto",
-  },
-  item: {
-    margin: "0",
-    color: "#F9F6F6",
-  },
-};
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+  background-color: #a19999;
+  margin-top: 40px;
+  border-radius: 4px;
+  width: 30%;
+  margin: 0 auto;
+`;
+
+const Item = styled.h2`
+  margin: 0;
+  color: #f9f6f6;
+`;
+
 export default Titulo;
