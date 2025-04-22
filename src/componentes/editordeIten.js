@@ -15,13 +15,13 @@ function EditorDeItem() {
       alert("preencha todos os campos");
       return;
     }
+    dispatch(adicionarItem({nome,email,contato}));
+
+    setNome("");
+    setEmail("");
+    setContato("");
   }
-  dispatch(adicionarItem({nome,email,contato}));
-
-  setNome("");
-  setEmail("");
-  setContato("");
-
+  
   const handleEditar = () => {
     if (itens.length === 0) return;
 
