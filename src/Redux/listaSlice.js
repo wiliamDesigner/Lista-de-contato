@@ -19,10 +19,11 @@ const listaSlice = createSlice({
         contato,
       });
     },
-    removerItem:(state,action)=>{
-      state.itens.pop();
+    removerItemPorId:(state,action)=>{
+      const id = action.payload;
+      state.itens = state.itens.filter(item => item.id !== id);
     },
-    editarItem:(state,action)=>{
+    editarItemPorId:(state,action)=>{
       const{id,nome,email,contato}=action.payload;
       const index=state.itens.findIndex(iten=>iten.id===id);
       if(index !== -1){
@@ -32,5 +33,5 @@ const listaSlice = createSlice({
   },
 });
 
-export const { adicionarItem,removerItem,editarItem } = listaSlice.actions;
+export const { adicionarItem,removerItem,editarItemPorId,removerItemPorId } = listaSlice.actions;
 export default listaSlice.reducer;

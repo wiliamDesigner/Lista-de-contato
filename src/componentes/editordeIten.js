@@ -1,33 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { adicionarItem, editarItem } from "../Redux/listaSlice";
+import { adicionarItem, editarItemPorId } from "../Redux/listaSlice";
 import styled from "styled-components";
 
-function EditorDeItem() {
+function EditorDeItem({ modo }) {
   const dispatch = useDispatch();
   const itens = useSelector((state) => state.lista.itens);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [contato, setContato] = useState("");
 
-  const handleAdicionar=()=>{
-    if(!nome||!email||!contato){
-      alert("preencha todos os campos");
+  const handleAdicionar = () => {
+    if (!nome || !email || !contato) {
+      alert("Preencha todos os campos");
       return;
     }
-    dispatch(adicionarItem({nome,email,contato}));
 
+    dispatch(adicionarItem({ nome, email, contato }));
     setNome("");
     setEmail("");
     setContato("");
-  }
-  
+  };
+
   const handleEditar = () => {
     if (itens.length === 0) return;
 
     const ultimoItem = itens[itens.length - 1];
     dispatch(
-      editarItem({
+      editarItemPorId({
         id: ultimoItem.id,
         nome,
         email,
@@ -56,11 +56,15 @@ function EditorDeItem() {
         value={contato}
         onChange={(e) => setContato(e.target.value)}
       />
-      <Botao onClick={handleAdicionar}>Editar último item</Botao>
+
+      {modo === "adicionar" ? (
+        <Botao onClick={handleAdicionar}>Adicionar</Botao>
+      ) : (
+        <Botao onClick={handleEditar}>Editar último item</Botao>
+      )}
     </Itens>
   );
 }
-
 
 const Itens = styled.div`
   display: flex;

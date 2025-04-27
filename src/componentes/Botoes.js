@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { adicionarItem, removerItem } from "../Redux/listaSlice";
 import EditorDeItem from "../componentes/editordeIten";
 
 function Botoes() {
-  const dispatch = useDispatch();
   const [mostrarEditor, setMostrarEditor] = useState(false);
+  const [modo, setModo] = useState(null);
 
   return (
     <Wrapper>
       <Container2>
-        <Botao onClick={() => dispatch(removerItem())}>Remover</Botao>
-        <Botao onClick={() => dispatch(adicionarItem())}>Adição</Botao>
-        <Botao onClick={() => setMostrarEditor(true)}>Edição</Botao>
+        <Botao onClick={() => { setModo("adicionar"); setMostrarEditor(true); }}> Adição</Botao>
+        <Botao onClick={() => { setModo("editar"); setMostrarEditor(true); }}> editar</Botao>
       </Container2>
-
-      {mostrarEditor && <EditorDeItem />}
+      {mostrarEditor && <EditorDeItem modo={modo} />}
     </Wrapper>
   );
 }

@@ -1,11 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { removerItemPorId } from "../Redux/listaSlice";
+
 
 function ListaContatos() {
   const contatos = useSelector((state) => state.lista.itens);
+  const dispatch = useDispatch();
 
-  console.log("Contatos atuais:", contatos); 
+  console.log("Contatos atuais:", contatos);
+
 
   return (
     <Container>
@@ -19,6 +23,11 @@ function ListaContatos() {
               <p><strong>Nome:</strong> {contato.nome}</p>
               <p><strong>Email:</strong> {contato.email}</p>
               <p><strong>Contato:</strong> {contato.contato}</p>
+              <BotoesContainer>
+                <BotaoExcluir onClick={() => dispatch(removerItemPorId(contato.id))}>
+                  Excluir
+                </BotaoExcluir>
+              </BotoesContainer>
             </Item>
           ))}
         </Lista>
@@ -41,8 +50,42 @@ const Item = styled.li`
   background-color: #f4f4f4;
   border: 1px solid #ccc;
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const BotoesContainer = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+`;
+
+const Botao = styled.button`
+  padding: 8px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+`;
+
+const BotaoExcluir = styled(Botao)`
+  background-color: #c94c4c;
+  &:hover {
+    background-color: #a83838;
+  }
+`;
+
+const BotaoEditar = styled(Botao)`
+  background-color: #4caf50;
+  &:hover {
+    background-color: #3e8e41;
+  }
 `;
 
 export default ListaContatos;
