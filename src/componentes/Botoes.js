@@ -5,6 +5,8 @@ import EditorDeItem from "../componentes/editordeIten";
 function Botoes() {
   const [mostrarEditor, setMostrarEditor] = useState(false);
   const [modo, setModo] = useState(null);
+  const [itemSelecionado, setItemSelecionado] = useState(null);
+
 
   return (
     <Wrapper>
@@ -12,7 +14,7 @@ function Botoes() {
         <Botao onClick={() => { setModo("adicionar"); setMostrarEditor(true); }}> Adição</Botao>
         <Botao onClick={() => { setModo("editar"); setMostrarEditor(true); }}> editar</Botao>
       </Container2>
-      {mostrarEditor && <EditorDeItem modo={modo} />}
+      {mostrarEditor && <EditorDeItem modo={modo} item={itemSelecionado} />}
     </Wrapper>
   );
 }
