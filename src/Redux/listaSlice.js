@@ -25,7 +25,7 @@ const listaSlice = createSlice({
     },
     editarItemPorId:(state,action)=>{
       const{id,nome,email,contato}=action.payload;
-      const index=state.itens.findIndex(iten=>iten.id===id);
+      const index=state.itens.map(iten=>iten.id===id);
       if(index !== -1){
         state.itens[index]={id,nome,email,contato};
       }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { removerItemPorId } from "../Redux/listaSlice";
+import { editarItemPorId, removerItemPorId } from "../Redux/listaSlice";
 
 
 function ListaContatos() {
@@ -24,12 +24,9 @@ function ListaContatos() {
               <p><strong>Email:</strong> {contato.email}</p>
               <p><strong>Contato:</strong> {contato.contato}</p>
               <BotoesContainer>
-              <BotaoEditar onClick={() => {
-                
-                }}>
+              <BotaoEditar onClick={() => dispatch(editarItemPorId(contato.id))}>
                 Editar
                 </BotaoEditar>
-
                 <BotaoExcluir onClick={() => dispatch(removerItemPorId(contato.id))}>
                   Excluir
                 </BotaoExcluir>
