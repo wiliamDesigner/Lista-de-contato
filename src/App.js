@@ -1,16 +1,20 @@
 import "./App.css";
-import Botoes from "./componentes/Botoes";
 import ListaContatos from "./componentes/listaConta";
 import Titulo from "./componentes/Titulo"; 
+import EditorDeItem from "./componentes/editordeIten";
+import { useSelector } from "react-redux";
 
 
 
 function App() {
+
+  const itemEditando=useSelector((state)=>state.ListaContatos.itemEditando)
+
   return (
     <div className="App">
       <Titulo /> 
+      <EditorDeItem modo={itemEditando?"editar":"adicionar"}/>
       <ListaContatos/>
-      <Botoes/> 
     </div>
   );
 }

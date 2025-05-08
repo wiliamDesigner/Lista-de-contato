@@ -5,7 +5,7 @@ import EditorDeItem from "../componentes/editordeIten";
 function Botoes() {
   const [mostrarEditor, setMostrarEditor] = useState(false);
   const [modo, setModo] = useState(null);
-  const [itemSelecionado, setItemSelecionado] = useState(null);
+  const [itemSelecionado] = useState(null);
   
 
 

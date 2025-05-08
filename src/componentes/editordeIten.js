@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { adicionarItem, editarItemPorId } from "../Redux/listaSlice";
+import { adicionarItem, editarItemPorId, setItemEditando } from "../Redux/listaSlice";
 import styled from "styled-components";
 
 function EditorDeItem({ modo }) {
   const dispatch = useDispatch();
-  const itens = useSelector((state) => state.lista.itens);
+  const itemEditando = useSelector((state) => state.lista.itemEditando);
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [contato, setContato] = useState("");
+
+  useEffect(() => {
+    if (modo === "editar" && itemEditando) {
+      setNome(itemEditando.nome);
+      setEmail(itemEditando.email);
+      setContato(itemEditando.contato);
+    }
+  }, [modo, itemEditando]);
+
+  const limparCampos = () => {
+    setNome("");
+    setEmail("");
+    setContato("");
+    dispatch(setItemEditando(null));
+  };
 
   const handleAdicionar = () => {
     if (!nome || !email || !contato) {
@@ -17,23 +33,21 @@ function EditorDeItem({ modo }) {
     }
 
     dispatch(adicionarItem({ nome, email, contato }));
-    setNome("");
-    setEmail("");
-    setContato("");
+    limparCampos();
   };
 
   const handleEditar = () => {
-    if (itens.length === 0) return;
+    if (!itemEditando) return;
 
-    const ultimoItem = itens[itens.length - 1];
     dispatch(
       editarItemPorId({
-        id: ultimoItem.id,
+        id: itemEditando.id,
         nome,
         email,
         contato,
       })
     );
+    limparCampos();
   };
 
   return (
