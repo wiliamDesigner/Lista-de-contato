@@ -25,7 +25,7 @@ function ListaContatos() {
               <p><strong>Email:</strong> {contato.email}</p>
               <p><strong>Contato:</strong> {contato.contato}</p>
               <BotoesContainer>
-              <BotaoEditar onClick={() => dispatch(setItemEditando(contato.id))}>
+              <BotaoEditar onClick={() => dispatch(setItemEditando(contato))}>
                 Editar
                 </BotaoEditar>
                 <BotaoExcluir onClick={() => dispatch(removerItemPorId(contato.id))}>

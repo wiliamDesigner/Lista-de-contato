@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 
 function App() {
 
-  const itemEditando=useSelector((state)=>state.ListaContatos.itemEditando)
+  const itemEditando=useSelector((state)=>state.Lista.itemEditando)
 
   return (
     <div className="App">
-      <Titulo /> 
+      <Titulo/> 
       <EditorDeItem modo={itemEditando?"editar":"adicionar"}/>
       <ListaContatos/>
     </div>
